@@ -1,0 +1,19 @@
+docker pull <image>
+docker run <image>
+docker ps
+  This will display all the running containers.
+docker ps -a 
+  This will display both the running and exited containers.
+docker images
+  This command will display all the images present locally.
+docker stop <containerID/name>
+  This command will stop the running container.
+docker rm <containerID/name>
+  This command will remove the container. Before removing the container, the container need to be in exited state.
+docker rmi <imagename>
+  This command will remove the images locally. Before doing so make sure the container is removed.
+docker exec <containername/id>
+docker run <image> <command>
+docker run -d <image>
+docker attach <containerid>
+docker run -it <image> <requiredterminal>

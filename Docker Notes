@@ -1,0 +1,36 @@
+Why docker is able to run the application with different os distrubutions using the OS kernel virtualization?
+
+   when we look at the Operating systems, it will consist of OS kernel and some softwares above that.
+   these softwares are the difference between the different distributions of OS which will change the UI and functionalities etc.
+
+So, in the containers these additional softwares are used and share the OS kernel under the Docker Which makes the applications run as expected. 
+So we can use Docker for all the linux distributions operationg systems.
+But for windows OS we will use Linux VM to run the docker.
+
+Difference between VMs and Docker
+VMs:
+  these are used to run and isolate different operating systems by sharing the hardware resources of the physcial system.
+1. it will have higher utilization of underline resources due multiple OS and kernel are running
+2. it also consume higher disk space as each VM is heavy in gigabytes
+3. the boottime is also high as it need to start OS as well
+4. VMs has complete isolation as each VM contains its own operating system.
+5. As VMs dont share under line operating system we can run any operaring system on the same hypervisor.
+
+Docker:
+   it is a tool used to containerise the application and its dependencies to deploy.
+1. Docker will have less utlization of resources due to sharing the underline OS kernel
+2. it consumes less disk space which will be in megabytes
+3. the boottime is very less as there is only one OS need to start.
+4. it will have less isolation as it will share the underline OS kernel
+5. As it will share the underline OS , we will only be able to run the base distribution of the OS kernel i.e linux
+6. Unlike VMs containers wont host any OS. so, container only last as long as the process inside it is alive.
+
+Having said the differences there is no VMs vs Dockers instead it is always VMs and docker. So, we use both together for optimising the applications and environments.
+
+Containers vs Images
+
+images: 
+   these are the templetes, packages and plan which are used to run the containers.
+
+containers:
+    These are the running instance of image which has isolated environment , set of process and resources.
