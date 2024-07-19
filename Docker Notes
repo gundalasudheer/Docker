@@ -1,6 +1,6 @@
 Why docker is able to run the application with different os distrubutions using the OS kernel virtualization?
 
-   when we look at the Operating systems, it will consist of OS kernel and some softwares above that.
+   when we look at the Operating Systems, it will consist of OS kernel and some softwares above that.
    these softwares are the difference between the different distributions of OS which will change the UI and functionalities etc.
 
 So, in the containers these additional softwares are used and share the OS kernel under the Docker Which makes the applications run as expected. 
@@ -34,3 +34,34 @@ images:
 
 containers:
     These are the running instance of image which has isolated environment , set of process and resources.
+
+Port Mapping:
+   when containers are hosted in the docker host it will get an ipaddress. when we want to try to access that we have two ways.
+   1. using the container Ipaddress:port
+   2. using the dockerhost ipaddress:port
+
+   if we use the container IPaddress to access the container we only be able to access when we are in the dockerhost network.
+   
+   so mostly we will be using the docker host IPaddress to access the container inside the dockerhost. But here we need to do the port mapping i.e dockerhost port to container port.
+   
+   we can able to do this using -p flag . once the port mapping is done then the traffic is forwarded to continer port from the docker port.
+   by using this we can run multiple instance of applications in the docker host using different ports of the dockerhost. we can't map same port on the docker host more than once.
+
+   Volume Mapping:
+     once the container exits the data associated with it will also get earsed. So to store the data we will be mapping the volume to the docker host volume.
+     Also when we want to update the data and we have mutliple instance of applications running then we can just update the dockerhost volume which will automatically update all the instance. 
+
+   Creating the Docker Image:
+
+     we will be creating a text file called DockerFile which will be written on a specific format the docker can understand. The dockerfile consist of instructions and arguments.
+     All the instructions will be in capital letters to the left side of the text file. ex: FROM, RUN , COPY, CMD, ENTRYPOINT, ENV, ADD, VOLUME,EXPOSE, WORKDIR. etc
+
+     Always the Dockerfile will start with FROM. It will use another image or an operating system.
+
+     when Docker builds the image from the Dockerfile in a layered architecture. Each instruction in the dockerfile is a layer with just the changes from the previous layer.
+
+     we can get all the layered information using the histroy command.
+
+     While building the image all the layers build will be cached. so that if the image build gets failed or if you add any new steps to the build then it will ignore the previous successful steps and build only the new or failed ones.
+
+     Instead of directly writing the Dockerfile, we can run a sample container only with the required OS and execute all the steps manually inside the container to make sure the application is running fine. once done copy all the steps to the note pad and fine tune it to make it to Dockerfile. 

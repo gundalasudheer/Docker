@@ -1,5 +1,7 @@
 docker pull <image>
+  This will download the image to local machine from the web. If we are not specified the version of the image then it will download the latest.
 docker run <image>
+  This is will check the image locally at first. if it is present then it will run as the container. If the image is not present then it will download from the web and run as a container.
 docker ps
   This will display all the running containers.
 docker ps -a 
@@ -7,13 +9,41 @@ docker ps -a
 docker images
   This command will display all the images present locally.
 docker stop <containerID/name>
-  This command will stop the running container.
+  This command will stop the running container. When will manually stop the container it will have the exit code as 137.
 docker rm <containerID/name>
-  This command will remove the container. Before removing the container, the container need to be in exited state.
+  This command will remove the container. Before removing the container, the container need to be in exited state. All the stopped containers will live on the disk drive. To reclaim the disk spcae we need to remove the stopped containers.
 docker rmi <imagename>
-  This command will remove the images locally. Before doing so make sure the container is removed.
-docker exec <containername/id>
+  This command will remove the images locally. Before doing so make sure the container is removed. 
+docker exec <containername/id> <command>
+  If we want to execute a command on the running container then we can use this exec command. ex: docker exec gsn_cont cat /etc/*release*
 docker run <image> <command>
 docker run -d <image>
+  To run the container in detached mode we will use -d flag. 
 docker attach <containerid>
+  To bring back the running container foreground we will use this command.
 docker run -it <image> <requiredterminal>
+  This command will allow us to interact with the terminal. Here -i means interactive -t means terminal.
+docker run --name <nameyouwantforthecontainer> <image>
+  By using this command we give the container our own name. ex: docker run -d --name webapp nginx
+docker run -p <dockerhostport>:<containerport> <image>
+  By using this command we can do the port mapping for the container running inside the docker host.
+docker run -v <dockerhostvolume>:<containervolume> <image>
+   By using this command we are mapping the volume of the container to dockerhost.
+
+docker inspect <containername/id>
+   This command will display all the details of the container in the json format.
+
+docker logs <containername/id>
+   This will display the logs of the container which ran in the detach mode.
+
+docker build DockerFile -t <namefortheimage>
+   This command will build the image from the dockerfile with the given tag.
+
+docker push <nameoftheimagewhichneedtopublish>
+   This command will publish the image to the public repo.
+
+docker histroy <imagename>
+   This command will display the information about the layers and size of the layers of the image.
+
+docker run -e <variable=value> <image>
+   This command will allow us to pass the value to env variable. We can find the env varible of running container by using the inspect command and check under the field ENV.
